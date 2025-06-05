@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+</head>
+<body>
+
+  <input type="number" id="ip1" placeholder="Enter number 1">
+  <input type="number" id="ip2" placeholder="Enter number 2">
+  <br><br>
+  <button onclick="calculate()">Calc</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+      var a = Number(document.getElementById("ip1").value);
+      var b = Number(document.getElementById("ip2").value);
+
+      var text = "Add: " + (a + b) + "<br>" +
+                 "Sub: " + (a - b) + "<br>" +
+                 "Mul: " + (a * b) + "<br>" +
+                 "Div: " + (b !== 0 ? (a / b) : "Cannot divide by 0");
+
+      document.getElementById("result").innerHTML = text;
+    }
+  </script>
+
+</body>
+</html>
