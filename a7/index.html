@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fruit List</title>
+</head>
+<body>
+
+  <h2>Fruit List</h2>
+
+  <input type="text" id="txt1" placeholder="Enter a fruit">
+  <button onclick="add()">Add</button>
+  <button onclick="search()">Search</button>
+
+  <ul id="fruitList"></ul>
+  <p id="countResult"></p>
+
+  <script>
+    let fruits = [];
+
+    function add() {
+      let input = document.getElementById("txt1").value.trim();
+      if (input !== "") {
+        fruits.push(input);
+        document.getElementById("txt1").value = "";
+        displayList();
+        document.getElementById("countResult").innerText = "";
+      }
+    }
+
+    function remove(index) {
+      fruits.splice(index, 1);
+      displayList();
+    }
+
+    function displayList() {
+      let listHTML = "";
+      for (let i = 0; i < fruits.length; i++) {
+        listHTML += `<li>${fruits[i]} <button onclick="remove(${i})">Delete</button></li>`;
+      }
+      document.getElementById("fruitList").innerHTML = listHTML;
+    }
+
+    function search() {
+      let searchInput = document.getElementById("txt1").value.trim();
+      let count = 0;
+      for (let i = 0; i < fruits.length; i++) {
+        if (fruits[i] === searchInput) {
+          count++;
+        }
+      }
+      document.getElementById("countResult").innerText =
+        count > 0
+          ? `"${searchInput}" : ${count} time(s).`
+          : `"${searchInput}" not found in the list.`;
+    }
+  </script>
+
+</body>
+</html>
