@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="fruitInput" placeholder="Enter fruit"/>
+    <button onclick ="addFruit()">Add Fruit</button>
+    <p id="output"></p>
+    <script>
+        let fruits = [];
+        function addFruit(){
+            let input = document.getElementById("fruitInput").value;
+            fruits.push(input);
+            document.getElementById("output").innerHTML += input + "\n";
+
+        }
+    </script>
+</body>
+</html>
