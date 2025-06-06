@@ -1,22 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Fruit List</title>
 </head>
 <body>
-    <input type="text" id="fruitInput" placeholder="Enter fruit"/>
-    <button onclick ="addFruit()">Add Fruit</button>
-    <p id="output"></p>
-    <script>
-        let fruits = [];
-        function addFruit(){
-            let input = document.getElementById("fruitInput").value;
-            fruits.push(input);
-            document.getElementById("output").innerHTML += input + "<br>";
 
+  <h2>Fruit List</h2>
+
+  <input type="text" id="txt1" placeholder="Enter a fruit">
+  <button onclick="add()">Add</button>
+  <button onclick="search()">Search</button>
+
+  <ul id="fruitList"></ul>
+  <p id="countResult"></p>
+
+  <script>
+    let fruits = [];
+
+    function add() {
+      let input = document.getElementById("txt1").value.trim();
+      if (input !== "") {
+        fruits.push(input);
+        document.getElementById("txt1").value = "";
+        displayList();
+        document.getElementById("countResult").innerText = "";
+      }
+    }
+
+    function remove(index) {
+      fruits.splice(index, 1);
+      displayList();
+    }
+
+    function displayList() {
+      let listHTML = "";
+      for (let i = 0; i < fruits.length; i++) {
+        listHTML += `<li>${fruits[i]} <button onclick="remove(${i})">Delete</button></li>`;
+      }
+      document.getElementById("fruitList").innerHTML = listHTML;
+    }
+
+    function search() {
+      let searchInput = document.getElementById("txt1").value.trim();
+      let count = 0;
+      for (let i = 0; i < fruits.length; i++) {
+        if (fruits[i] === searchInput) {
+          count++;
         }
-    </script>
+      }
+      document.getElementById("countResult").innerText =
+        count > 0
+          ? `"${searchInput}" : ${count} time(s).`
+          : `"${searchInput}" not found in the list.`;
+    }
+  </script>
+
 </body>
 </html>
